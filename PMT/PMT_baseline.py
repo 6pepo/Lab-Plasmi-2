@@ -54,18 +54,20 @@ for i in range(0, len(x), 100):
 # Linear regression
 m, b = np.polyfit(baseline_x, baseline_y, 1)
 print('Linear regression: m={}, b={}'.format(m, b))
+# Valori ottenuti con step=10:
+# Linear regression: m=0.050192949958465474, b=0.0011869688474004795
 
 
 fig, ax = plt.subplots()
-ax.plot(x, y)
-ax.scatter(baseline_x, baseline_y, color='red')
+ax.plot(x, y, zorder=0)
+ax.scatter(baseline_x, baseline_y, color='red', zorder=1)
 
 #ax.hlines(0, x[peaks[0]]-width_scale, x[peaks[0]]+width_scale, colors='red')
 
 # Plot regressione lineare
 xreg = np.linspace(np.min(baseline_x), np.max(baseline_x), 100)
 yreg = m*xreg + b
-ax.plot(xreg, yreg, label="fit", color='red')
+ax.plot(xreg, yreg, label="fit", color='orange', zorder=2)
 
 
 plt.show()
