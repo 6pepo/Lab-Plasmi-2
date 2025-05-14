@@ -51,6 +51,7 @@ time = data['channel_2']['x_data']
 signal = data['channel_2']['y_data']
 
 peaks,_ = find_peaks(-signal, height=5e-3, prominence=1e-3)
+print(len(peaks))
 
 b_line = get_baseline(time,signal, 1000, 5)
 
@@ -67,6 +68,27 @@ for i in range(len(intersections)):
 
 ax.plot([],[], 'yD', label='left')
 ax.plot([],[], 'mp', label='right')
+
+# for i, peak in enumerate(peaks):
+#     #interval around the peak
+#     left = intersections[i,0]
+#     right = intersections[i,1]
+#     time_local = time[left:right]
+#     signal_local = signal[left:right]
+
+#     #initial fit parameters estimate
+#     par = [signal[peak], time[peak], 0.25]
+
+#     #fit the peak with a gaussian
+#     popt, pcov = curve_fit(gaussian, time_local, signal_local, par, maxfev=8000)
+#     # print('\np-->', peak , '\tm-->', m[peak], '\tp-->', p[peak],'\tAmpiezza-->', popt[0], '\tMedia-->', popt[1], '\tSigma-->', popt[2])
+
+#     #increase the interval for a better drawing
+#     pad = 100
+#     time_local = time[left-pad:right+pad]
+
+#     #plot the gaussian
+#     plt.plot(time_local, gaussian(time_local, *popt), 'r--') 
 
 plt.legend()
 plt.grid()
