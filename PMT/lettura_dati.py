@@ -29,10 +29,13 @@ fl = var + '.bin'
 
 # variabili
 cwd = os.getcwd()
+print(cwd)
 
 # load data
-os.chdir(cwd + '/Dati')
-data = read_agilent_binary(fl, include_time_vector=True)
+os.chdir(cwd + '/PMT/Dati')
+
+
+data = read_agilent_binary(fl, include_time_vector=True, include_datetime=False)
 pprint(data)
 x, y = data['channel_2']['x_data'], data['channel_2']['y_data']
 
