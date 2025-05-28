@@ -76,7 +76,7 @@ ax1.set_ylabel('Energy [keV]')
 ax1.grid(True)
 ax1.legend()
 
-# Conversione post calibrazione
+# Conversione post calibrazione --> Alberto
 energy = channels * popt_energy[0] + popt_energy[1]
 fig2, ax2 = plt.subplots()
 ax2.plot(energy, counts, 'rx', label='Data')
