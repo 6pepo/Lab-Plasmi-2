@@ -76,4 +76,14 @@ ax1.set_ylabel('Energy [keV]')
 ax1.grid(True)
 ax1.legend()
 
+# Conversione post calibrazione
+energy = channels * popt_energy[0] + popt_energy[1]
+fig2, ax2 = plt.subplots()
+ax2.plot(energy, counts, 'rx', label='Data')
+plt.title('Conversione in energia))
+ax2.set_xlabel('Energy [keV]')
+ax2.set_ylabel('Counts')
+ax2.grid('--')
+ax2.legend()
+
 plt.show()
