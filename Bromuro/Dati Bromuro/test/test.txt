@@ -1,0 +1,19 @@
+Run ID = test
+Start time = Wed May 28 09:21:00 2025
+
+CH7@DT5730SB_2289
+	Energy calibration: C0 = 0; C1 = 1; C2 = 0; unit = keV
+	Real time = 0:00:58.619
+	Live time = 0:00:58.599
+	Dead time = 0.04 %
+	Input counts = 36507; rate (cps) = 622.8±3.3
+	Pile up counts = 0; rate (cps) = 0
+	Saturation counts = 97; rate (cps) = 1.65±0.17
+	E cut counts = 0; rate (cps) = 0
+	PSD cut counts = 0; rate (cps) = 0
+	T cut counts = 0; rate (cps) = 0
+	Singles counts = 0; rate (cps) = 0
+	Output counts = 36397; rate (cps) = 620.9±3.3
+	Gamma counts = 0; rate (cps) = 0
+	Neutron counts = 36397; rate (cps) = 620.9±3.3
+

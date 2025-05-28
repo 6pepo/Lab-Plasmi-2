@@ -10,7 +10,7 @@ def gaussian(x,a,mean,sigma):
 def line(x,m,q):
     return m*x+q
 
-file = f'fondo1_1000V/RAW/CH7@DT5730SB_2289_EspectrumR_fondo1_1000V_20250528_094644.txt3'
+file = f'Dati Bromuro/fondo1_1000V/RAW/CH7@DT5730SB_2289_EspectrumR_fondo1_1000V_20250528_094644.txt3'
 
 #load data
 data = np.genfromtxt(file, delimiter=' ', skip_header=2, usecols=(0,1), unpack=True)

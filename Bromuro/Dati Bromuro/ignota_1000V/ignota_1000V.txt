@@ -1,0 +1,19 @@
+Run ID = ignota_1000V
+Start time = Wed May 28 10:46:06 2025
+
+CH7@DT5730SB_2289
+	Energy calibration: C0 = 0; C1 = 1; C2 = 0; unit = keV
+	Real time = 0:20:00.182
+	Live time = 0:19:59.577
+	Dead time = 0.05 %
+	Input counts = 1529873; rate (cps) = 1274.7±1
+	Pile up counts = 44; rate (cps) = 0.0367±0.0055
+	Saturation counts = 2112; rate (cps) = 1.76±0.038
+	E cut counts = 0; rate (cps) = 0
+	PSD cut counts = 0; rate (cps) = 0
+	T cut counts = 0; rate (cps) = 0
+	Singles counts = 0; rate (cps) = 0
+	Output counts = 1526990; rate (cps) = 1272.3±1
+	Gamma counts = 0; rate (cps) = 0
+	Neutron counts = 1526990; rate (cps) = 1272.3±1
+

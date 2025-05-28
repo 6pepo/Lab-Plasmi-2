@@ -1,0 +1,19 @@
+Run ID = fondo1_1000V
+Start time = Wed May 28 09:26:43 2025
+
+CH7@DT5730SB_2289
+	Energy calibration: C0 = 0; C1 = 1; C2 = 0; unit = keV
+	Real time = 0:20:00.187
+	Live time = 0:19:59.870
+	Dead time = 0.03 %
+	Input counts = 750313; rate (cps) = 625.16±0.72
+	Pile up counts = 12; rate (cps) = 0.01±0.0029
+	Saturation counts = 2143; rate (cps) = 1.786±0.039
+	E cut counts = 0; rate (cps) = 0
+	PSD cut counts = 0; rate (cps) = 0
+	T cut counts = 0; rate (cps) = 0
+	Singles counts = 0; rate (cps) = 0
+	Output counts = 747972; rate (cps) = 623.21±0.72
+	Gamma counts = 0; rate (cps) = 0
+	Neutron counts = 747972; rate (cps) = 623.21±0.72
+

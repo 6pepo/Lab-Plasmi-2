@@ -1,0 +1,19 @@
+Run ID = cesio1_1000V
+Start time = Wed May 28 10:02:35 2025
+
+CH7@DT5730SB_2289
+	Energy calibration: C0 = 0; C1 = 1; C2 = 0; unit = keV
+	Real time = 0:20:00.221
+	Live time = 0:19:59.310
+	Dead time = 0.08 %
+	Input counts = 2607050; rate (cps) = 2172.1±1.3
+	Pile up counts = 12; rate (cps) = 0.01±0.0029
+	Saturation counts = 2109; rate (cps) = 1.757±0.038
+	E cut counts = 0; rate (cps) = 0
+	PSD cut counts = 0; rate (cps) = 0
+	T cut counts = 0; rate (cps) = 0
+	Singles counts = 0; rate (cps) = 0
+	Output counts = 2602962; rate (cps) = 2168.7±1.3
+	Gamma counts = 2; rate (cps) = 0.0017±0.0012
+	Neutron counts = 2602960; rate (cps) = 2168.7±1.3
+

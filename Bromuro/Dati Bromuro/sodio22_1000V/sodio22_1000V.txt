@@ -1,0 +1,19 @@
+Run ID = sodio22_1000V
+Start time = Wed May 28 10:24:13 2025
+
+CH7@DT5730SB_2289
+	Energy calibration: C0 = 0; C1 = 1; C2 = 0; unit = keV
+	Real time = 0:20:00.180
+	Live time = 0:19:59.841
+	Dead time = 0.03 %
+	Input counts = 964042; rate (cps) = 803.25±0.82
+	Pile up counts = 9; rate (cps) = 0.0075±0.0025
+	Saturation counts = 2034; rate (cps) = 1.695±0.038
+	E cut counts = 0; rate (cps) = 0
+	PSD cut counts = 0; rate (cps) = 0
+	T cut counts = 0; rate (cps) = 0
+	Singles counts = 0; rate (cps) = 0
+	Output counts = 961736; rate (cps) = 801.33±0.82
+	Gamma counts = 1; rate (cps) = 0.00083±0.00083
+	Neutron counts = 961735; rate (cps) = 801.33±0.82
+
