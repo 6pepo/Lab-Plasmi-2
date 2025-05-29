@@ -63,6 +63,9 @@ x = np.linspace(np.min(channels[mask_ec]), np.max(channels[mask_ec]), 100)
 ax.plot(x, gaussian(x,*popt1), 'r--', label=f'EC Peak-1440: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}')
 ax.plot(x, gaussian(x,*popt2), 'g--', label=f'EC Peak-1472: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}')
 
+print('Bromuro 1:', find_FWHM(gaussian(x,*popt1))/popt1[1] * 100)
+print('Bromuro 2:', find_FWHM(gaussian(x,*popt2))/popt2[1] * 100)
+
 mask_beta = (channels >= 600) & (channels <= 850)
 filt_counts = savgol_filter(counts[mask_beta],20,1)
 
@@ -103,6 +106,8 @@ popt, pcov = curve_fit(gaussian, channels[mask], counts[mask], p0=par)
 x = np.linspace(np.min(channels[mask]), np.max(channels[mask]), 100)
 ax1.plot(x, gaussian(x,*popt), 'r--', label=f'Peak: A = {popt[0]:.2f}, $\mu$ = {popt[1]:.2f}, $\sigma$ = {popt[2]:.2f}')
 
+print('Cesio :', find_FWHM(gaussian(x,*popt))/popt[1] * 100)
+
 ax1.grid(True)
 ax1.legend()
 
@@ -126,6 +131,8 @@ popt, pcov = curve_fit(gaussian, channels[mask], counts[mask], p0=par)
 
 x = np.linspace(np.min(channels[mask]), np.max(channels[mask]), 100)
 ax2.plot(x, gaussian(x,*popt), 'r--', label=f'Peak: A = {popt[0]:.2f}, $\mu$ = {popt[1]:.2f}, $\sigma$ = {popt[2]:.2f}')
+
+print('Sodio :', find_FWHM(gaussian(x,*popt))/popt[1] * 100)
 
 ax2.grid(True)
 ax2.legend()
