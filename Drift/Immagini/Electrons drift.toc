@@ -1,0 +1,16 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Instruments description}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Tools list}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Pumping system, valve...}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}GEM and PMT}{2}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}GEM}{3}{subsection.1.3.1}%
+\contentsline {subsubsection}{What's a GEM?}{3}{section*.7}%
+\contentsline {subsubsection}{Kapton}{3}{section*.10}%
+\contentsline {subsubsection}{Čerenkov effect}{3}{section*.12}%
+\contentsline {subsection}{\numberline {1.3.2}PMT}{4}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}Digitizer, RC circuit and Preamplifier}{5}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Data Anlaysis}{6}{chapter.2}%
+\contentsline {subsection}{\numberline {2.0.1}Good Count}{7}{subsection.2.0.1}%
+\contentsline {subsection}{\numberline {2.0.2}Bad Count}{8}{subsection.2.0.2}%
+\contentsline {section}{\numberline {2.1}Drift Range}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Top Range}{10}{section.2.2}%
