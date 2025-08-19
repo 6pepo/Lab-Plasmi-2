@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: funct_utils
+Version: 1.0
+Summary: Libreria per calcolo FWHM, rilevamento picchi e altro
+Home-page: https://github.com/Alberto260699/funct_utils
+Author: Alberto
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: uncertainties
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: summary
+
+# funct_utils
+
+Libreria Python per:
+- Calcolo della larghezza a metÃ  altezza (FWHM)
+- Rilevamento dei picchi locali
+- Rilevamento dei minimi locali (con filtro Savitzky-Golay)
+
+## Installazione
+
+```bash
+pip install -e . --no-use-pep517 --no-build-isolation
+```
+
+## Uso
+
+```python
+from funct_utils import find_FWHM, find_peaks, find_min
+```
