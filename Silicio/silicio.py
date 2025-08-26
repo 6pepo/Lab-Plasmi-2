@@ -57,7 +57,7 @@ def option0(): # Calibrazione
 	print(chi1)
 	print(chi2)
 	
-	# Plot data
+	# Plot data + Calibration
 	fig=plt.figure()
 	ax1=fig.add_subplot(111)
 	ax1.scatter(x_peaks, energy_peaks, label='Data', color='blue')
@@ -99,7 +99,7 @@ def option0(): # Calibrazione
 	
 	os.chdir(cwd + '/Parametri')
 	fl1=open('Param_calibration.txt', 'a')
-	fl1.write(str(popt[0])+', '+str(popt[1])+'\n')
+	fl1.write(str(popt[0])+', '+str(popt[1])+'\n') #controllare se si riescono a calcolare gli errori dei coeficenti
 	fl1.close()
 	
 	plt.show()
@@ -223,17 +223,22 @@ def option2(): # Plot dei dati salvati
 	plt.grid(linestyle='--')
 	plt.legend()
 	plt.show()
+
+def option3(): #analisi Americio
+	
 	
 #program
 OPTIONS = {
 	0: option0,
 	1: option1,
 	2: option2,
+	3: option3,
 }
 
 print("0 - calibrazione")
 print("1 - plot grafico + scrive su file")
 print("2 - plot grafici guadagno/shaping time + salvataggio immagine")
+print("3 - analisi Americio")
 print("\n")
 
 while True:
