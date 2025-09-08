@@ -51,6 +51,9 @@ def option0():# Calibrazione
 	mask1 = (channels >= 1080) & (channels <= 1120)
 	mask2 = (channels > 1120) & (channels <= 1180)
 	
+	par = [2100., 1100., 100.]
+	popt, pcov = curve_fit(gaussian, channels[mask_ec], counts[mask_ec], p0=par)
+	
 	par1 = [1300., 1114., 5.]
 	popt1, pcov1 = curve_fit(gaussian, channels[mask1], counts[mask1], p0=par1)
 	
@@ -58,8 +61,9 @@ def option0():# Calibrazione
 	popt2, pcov2 = curve_fit(gaussian, channels[mask2], counts[mask2], p0=par2)
 	
 	x = np.linspace(np.min(channels[mask_ec]), np.max(channels[mask_ec]), 100)
-	plt.plot(x, gaussian(x,*popt1), 'r--', label=f'Peak-1440: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}')
-	plt.plot(x, gaussian(x,*popt2), 'g--', label=f'Peak-1472: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}')
+	plt.plot(x, gaussian(x,*popt), 'b--', label=rf'Peak-cumulative: A = {popt[0]:.2f}, $\mu$ = {popt[1]:.2f}, $\sigma$ = {popt[2]:.2f}')
+	plt.plot(x, gaussian(x,*popt1), 'r--', label=rf'Peak-1440: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}')
+	plt.plot(x, gaussian(x,*popt2), 'g--', label=rf'Peak-1472: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}')
 	
 	mask_beta = (channels >= 600) & (channels <= 850)
 	filt_counts = savgol_filter(counts[mask_beta],20,1)
@@ -94,7 +98,7 @@ def option0():# Calibrazione
 	
 	plt.plot(channels_peaks, energy_peaks, 'rx', label='Peaks')
 	x = np.linspace(np.min(channels_peaks), np.max(channels_peaks), 100)
-	plt.plot(x, line(x,*popt_energy), 'b--', label=f'm={popt_energy[0]:.2f}, q={popt_energy[1]:.2f}')
+	plt.plot(x, line(x,*popt_energy), 'b--', label=rf'm={popt_energy[0]:.2f}, q={popt_energy[1]:.2f}')
 	plt.title('Calibrazione')
 	plt.xlabel('Channels')
 	plt.ylabel('Energy [KeV]')
@@ -151,8 +155,8 @@ def option1():# Plot dei grafici per trovare i picchi
 		mask2 = (energy>=1350) & (energy<=1550)
 		popt1, pcov1 = curve_fit(gaussian, energy[mask1], counts[mask1], par1)
 		popt2, pcov2 = curve_fit(gaussian, energy[mask2], counts[mask2], par2)
-		plt.plot(energy[mask1], gaussian(energy[mask1],*popt1), label=f'Peak: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}', color='red')
-		plt.plot(energy[mask2], gaussian(energy[mask2],*popt2), label=f'Peak: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}', color='red')
+		plt.plot(energy[mask1], gaussian(energy[mask1],*popt1), label=rf'Peak: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}', color='red')
+		plt.plot(energy[mask2], gaussian(energy[mask2],*popt2), label=rf'Peak: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}', color='red')
 		
 	elif fnmatch.fnmatchcase(file, '*sodio*'):
 		plt.title('Picchi di Sodio-22')
@@ -166,9 +170,9 @@ def option1():# Plot dei grafici per trovare i picchi
 		popt1, pcov1 = curve_fit(gaussian, energy[mask1], counts[mask1], par1)
 		popt2, pcov2 = curve_fit(gaussian, energy[mask2], counts[mask2], par2)
 		popt3, pcov3 = curve_fit(gaussian, energy[mask3], counts[mask3], par3)
-		plt.plot(energy[mask1], gaussian(energy[mask1],*popt1), label=f'Peak: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}', color='red')
-		plt.plot(energy[mask2], gaussian(energy[mask2],*popt2), label=f'Peak: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}', color='red')
-		plt.plot(energy[mask3], gaussian(energy[mask3],*popt3), label=f'Peak: A = {popt3[0]:.2f}, $\mu$ = {popt3[1]:.2f}, $\sigma$ = {popt3[2]:.2f}', color='red')
+		plt.plot(energy[mask1], gaussian(energy[mask1],*popt1), label=rf'Peak: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}', color='red')
+		plt.plot(energy[mask2], gaussian(energy[mask2],*popt2), label=rf'Peak: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}', color='red')
+		plt.plot(energy[mask3], gaussian(energy[mask3],*popt3), label=rf'Peak: A = {popt3[0]:.2f}, $\mu$ = {popt3[1]:.2f}, $\sigma$ = {popt3[2]:.2f}', color='red')
 		
 	elif fnmatch.fnmatchcase(file, '*ignota*'):
 		plt.title('Picchi di Ignota')
@@ -182,9 +186,9 @@ def option1():# Plot dei grafici per trovare i picchi
 		popt1, pcov1 = curve_fit(gaussian, energy[mask1], counts[mask1], par1)
 		popt2, pcov2 = curve_fit(gaussian, energy[mask2], counts[mask2], par2)
 		popt3, pcov3 = curve_fit(gaussian, energy[mask3], counts[mask3], par3)
-		plt.plot(energy[mask1], gaussian(energy[mask1],*popt1), label=f'Peak: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}', color='red')
-		plt.plot(energy[mask2], gaussian(energy[mask2],*popt2), label=f'Peak: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}', color='red')
-		plt.plot(energy[mask3], gaussian(energy[mask3],*popt3), label=f'Peak: A = {popt3[0]:.2f}, $\mu$ = {popt3[1]:.2f}, $\sigma$ = {popt3[2]:.2f}', color='red')
+		plt.plot(energy[mask1], gaussian(energy[mask1],*popt1), label=rf'Peak: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}', color='red')
+		plt.plot(energy[mask2], gaussian(energy[mask2],*popt2), label=rf'Peak: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}', color='red')
+		plt.plot(energy[mask3], gaussian(energy[mask3],*popt3), label=rf'Peak: A = {popt3[0]:.2f}, $\mu$ = {popt3[1]:.2f}, $\sigma$ = {popt3[2]:.2f}', color='red')
 		
 	
 	plt.legend()
@@ -220,8 +224,8 @@ def option2():# Rilevazione della sorgente esterna di cesio al variare delle dis
 	os.chdir(cwd + '/Immagini')
 	plt.figure()
 	plt.plot(energy, counts, label='Data')
-	plt.plot(energy[mask1], gaussian(energy[mask1], *popt1), label=f'Peak: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}', color='red')
-	plt.plot(energy[mask2], gaussian(energy[mask2], *popt2), label=f'Peak: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}', color='red')
+	plt.plot(energy[mask1], gaussian(energy[mask1], *popt1), label=rf'Peak: A = {popt1[0]:.2f}, $\mu$ = {popt1[1]:.2f}, $\sigma$ = {popt1[2]:.2f}', color='red')
+	plt.plot(energy[mask2], gaussian(energy[mask2], *popt2), label=rf'Peak: A = {popt2[0]:.2f}, $\mu$ = {popt2[1]:.2f}, $\sigma$ = {popt2[2]:.2f}', color='red')
 	plt.grid(linestyle='--')
 	plt.legend()
 	plt.savefig(var+'.png')
@@ -242,12 +246,16 @@ def option3():# Simulazione
 	popt, pcov = curve_fit(curve, dist, eff)
 	perr=np.sqrt(np.diag(pcov))
 	R2 = r2_score(curve(dist, *popt), eff)
+	print(R2)
 	
 	fig=plt.figure()
 	plt.plot(dist, eff, label='Data')
 	plt.scatter(dist, eff, marker='x')
-	plt.plot(np.linspace(min(dist),max(dist)), curve(np.linspace(min(dist),max(dist)), *popt), linestyle='--', color='red')
+	plt.plot(np.linspace(min(dist),max(dist)), curve(np.linspace(min(dist),max(dist)), *popt), linestyle='--', color='red', label=f'y={popt[2]:.2f}+$\\frac{{{popt[1]:.2f}}}{{x}}$+$\\frac{{{popt[0]:.2f}}}{{x^2}}$')
 	plt.grid(linestyle='--')
+	plt.legend()
+	plt.xlabel('Distance [mm]')
+	plt.ylabel(r'Efficency ratio [$10^{{-3}}$]')
 	os.chdir(cwd + '/Immagini')
 	plt.savefig('Dati_sim.png')
 	plt.show()
