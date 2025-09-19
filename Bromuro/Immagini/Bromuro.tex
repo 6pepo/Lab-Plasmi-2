@@ -27,6 +27,7 @@
 \definecolor{maroon(html/css)}{rgb}{0.5, 0.0, 0.0}
 \usepackage{nicematrix}
 \usepackage{rotating}
+\usepackage{url}
 
 \begin{document}
 	\begin{titlepage}
@@ -134,6 +135,14 @@ We now proceed to the actual data collection: the output signal is connected to 
 \begin{figure}[H]
     \centering
     % Prima immagine
+    \begin{subfigure}{1\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Fondo}
+        \caption{Background}
+        \label{Fondo}
+    \end{subfigure}
+    \\
+    % Seconda immagine
     \begin{subfigure}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Dec_beta}
@@ -141,7 +150,7 @@ We now proceed to the actual data collection: the output signal is connected to 
         \label{bdecay}
     \end{subfigure}
     \hfill
-    % Seconda immagine
+    % Terza immagine
     \begin{subfigure}{0.49\textwidth}
         \centering
         \includegraphics[width=\linewidth]{Doppia_gauss}
@@ -164,27 +173,16 @@ Energy [keV] = 1,29 \cdot Channel [Ch] + 4,47
 \label{Calibration}
 \end{figure}
 
-Once the data needed to calibrate the crystal have been collected, the measurement can begin: after aligning the crystal and the cesium gel disk that will constitute the radioactive source on a workbench and verifying that the source and instrument are aligned with each other, data on the decay of the cesium are collected at various distances from the detector. In the two different cases analyzed (300 1mm and 152 1mm), it was necessary to lower the threshold to make the peak recognizable.
-
-	\section{\ch{LaBr3} scintillator}
-		\subsection{Intrinsic radioactivity}
-
+So applying channels-energies conversion we obtain the follow spectrum (figure \ref{Fondo_conv}):
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{Fondo}
-\caption{Background}
-\label{Fondo}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.5\textwidth]{Energy_conv_fondo}
+\includegraphics[width=0.6\textwidth]{Energy_conv_fondo}
 \caption{Background converted}
 \label{Fondo_conv}
 \end{figure}
 
-	\subsection{Detection efficiency}
-
+	\section{\ch{LaBr3} scintillator}
+			\subsection{Resolution in Poisson limit}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{Doppia_gauss}
@@ -192,49 +190,188 @@ Once the data needed to calibrate the crystal have been collected, the measureme
 \label{double}
 \end{figure}
 
+The following are the results obtained for the centroids of the two Gaussians and the cumulative one:
+\begin{itemize}
+\item Peak - 1440 keV: (1120.98 $\pm$ 14.99) Ch
+\item Peak - 1472 keV: (1133.25 $\pm$ 12.46) Ch
+\item Cumulative peak: (1129.69 $\pm$ 16.43) Ch
+\end{itemize}
+
+At this point, the energy resolution of the detector was estimated:
+
 \begin{equation}
 R=\frac{FWHM}{H_0}=\frac{2.35\sqrt{FH_0}}{H_0}
 \end{equation}
 
-errore sulla stima della centroide del fit totale: $1129 \pm 16 Ch$\\
-la risoluzione data è del 3\% , quella stimana invece è 6,99\%, quindi il fattore di Fano sarà $\approx$0.18419937740610434
+where FWHM is the width at half-height of the peak and H$_{0}$ is its centroid. Taking the centroid of the cumulative Gaussian and its area as a reference.
 
- \begin{equation}
+As previously indicated, we assume that the cumulative peak is the centroid, thus calculating the resolution R of the peak in the Poissonian limit we obtain: 6.99$\pm$0.05 \%, instead of given resolution equal to: 3\%. This leads us to introduce the Fano factor that is $\approx$18.40$\pm$0.26\%.
+
+		\subsection{Intrinsic radioactivity and Detection efficiency}
+The objective is to estimate the absolute intrinsic radiation efficiency of lanthanum, that is, the number of pulses the detector is capable of recording compared to the number of pulses emitted by the source. The procedure is divided into three main steps:
+\begin{itemize}
+\item crystal volume estimation ($V_{crystal}$, equation \ref{volume})
+\item source activity estimation ($A_{\ch{LaBr3}}$, equation \ref{attivita})
+\item estimation of detection efficiency for intrinsic radioactivity ($\epsilon_{abs, RAD.INTR.}$, equation \ref{eff_int})
+\end{itemize}
+
+Knowing the nominal efficiency of the instrument, it is possible to estimate the volume of the crystal as the sum of the mass fractions of the various components. Therefore, having a crystal of $\ch{La}(:\ch{Ce}\,5\%)\ch{Br3}$, we can estimate the volume according to the equation:
+
+\begin{equation}
  \begin{array}{ll}
 V_{crystal} & =\frac{m_{\ch{LaBr3}}}{\rho_{\ch{LaBr3}}}+\frac{m_{\ch{CeBr3}}}{\rho_{\ch{CeBr3}}}=\\
-\null & =\left(\frac{\tau_{1/2}}{ln(2)t}\frac{\#}{BR\epsilon AI}\frac{1}{N_{A}}\right)\left(\frac{mm_{\ch{LaBr3}}}{\rho_{\ch{LaBr3}}}95\%+\frac{mm_{\ch{CeBr3}}}{\rho_{\ch{CeBr3}}}5\%\right)
+\null & =\left(\frac{\tau_{1/2}}{ln(2)t}\frac{\#_{\ch{LaBr3}}}{BR\epsilon AI}\frac{1}{N_{A}}\right)\left(\frac{mm_{\ch{LaBr3}}}{\rho_{\ch{LaBr3}}}95\%+\frac{mm_{\ch{CeBr3}}}{\rho_{\ch{CeBr3}}}5\%\right) =\\
+\null & = 423.07 \pm 67.08 cm^{3}
 \end{array}
+\label{volume}
  \end {equation}
+
+The constants and parameter in the formulas are reported in appendix \ref{parameter}.\\
+The intrinsic activity $A_{\ch{LaBr3}}$ is defined as the product of the number of active \ch{La} atoms and the decay constant $\lambda$:
  
 \begin{equation}
 \begin{array}{ll}
 A_{\ch{LaBr3}} & =N_{AA}\lambda=\\
-\null & =N_A\frac{(\rho_{\ch{LaBr3}}95\%+\rho_{\ch{CeBr3}}5\%)V_{crystal}}{(mm_{\ch{LaBr3}}95\%+mm_{\ch{CeBr3}}5\%)}AI\frac{ln(2)}{\tau_{1/2}}
- \end{array}
- \end {equation}
+\null & =N_A\frac{(\rho_{\ch{LaBr3}}95\%+\rho_{\ch{CeBr3}}5\%)V_{crystal}}{(mm_{\ch{LaBr3}}95\%+mm_{\ch{CeBr3}}5\%)}AI\frac{ln(2)}{\tau_{1/2}} =\\
+\null & = 651.88 \pm 103.15 Bq
+\end{array}
+\label{attivita}
+\end {equation}
+
+It remains only to estimate the intrinsic absolute efficiency of the detector:
 
 \begin{equation}
-\epsilon_{abs, RAD.INTR.}=\frac{\#}{A_{\ch{LaBr3}}tBR}
- \end {equation}
- 
- \begin{equation}
-A_{\ch{Cs}}=\frac{\#}{\epsilon_{ratio}\epsilon_{abs, RAD.INTR.}t}
- \end {equation}
- 
-  \begin{equation}
-A_{\ch{Cs}}=A_{0}e^{-\lambda t}=A_{0}e^{-\frac{ln(2)}{\tau_{1/2}} t}
- \end {equation}
- 
+\epsilon_{abs, RAD.INTR.}=\frac{\#_{\ch{LaBr3}}}{A_{\ch{LaBr3}}\delta tBR} = 18.9870\pm0.0002\%
+\label{eff_int}
+\end {equation}
+
+where $\#_{\ch{LaBr3}}$ represents the area of the electron capture peak, that is the number of photons recorded by the detector, $\delta t$ is the measurement time interval, and BR is the acronym for Branching Ratio, which represents the probability with which $^{138}\ch{La}$ decays by electron capture (the remaining percentage is due to decays $\beta^{-}$).
+
+\newpage
  	\section{$^{137}\ch{Cs}$ source}
  		\subsection{Monte Carlo simulation}
+After calculating the absolute efficiency of the detector relative to the intrinsic radioactivity of the crystal, through a Monte Carlo simulation, we find a relationship between this constant and the efficiency relative to a cesium source. Specifically, we obtain a relationship between the ratio of the two efficiencies and the distance.
+
+\begin{equation}
+\epsilon_{ratio}=\frac{\epsilon_{abs,\ch{Cs}}}{\epsilon_{abs, RAD.INTR.}} 
+\end{equation}
+
+The parameters were provided by previous studies, the results follow the table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cc}\hline
+\textbf{Distance [cm]}&\textbf{$\epsilon_{ratio}$}\\\hline
+5&1.932$\cdot10^{-2}$\\
+7&1.351$\cdot10^{-2}$\\
+10&8.671$\cdot10^{-3}$\\
+12&6.732$\cdot10^{-3}$\\
+15&4.863$\cdot10^{-3}$\\
+17&4.022$\cdot10^{-3}$\\
+20&3.091$\cdot10^{-3}$\\
+22&2.659$\cdot10^{-3}$\\
+25&2.148$\cdot10^{-3}$\\
+30&1.576$\cdot10^{-3}$\\
+35&1.223$\cdot10^{-3}$\\
+40&9.517$\cdot10^{-4}$\\
+45&7.714$\cdot10^{-4}$\\
+50&6.518$\cdot10^{-4}$\\\hline
+\end{tabular}
+\caption{Geometry efficency}
+\end{table}
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{Dati_sim}
-\caption{Simuation}
+\includegraphics[width=0.7\textwidth]{Dati_sim}
+\caption{Simulation}
 \label{simu}
 \end{figure}
 
+\newpage
  		\subsection{$^{137}\ch{Cs}$ measures}
+With the data provided it is therefore possible to estimate the activity of the cesium source by analyzing the counts detected in the appendix \ref{app_cesio} and applying the following formula we get the figure \ref{acti}.
+\begin{equation}
+A_{\ch{Cs}}=\frac{\#_{\ch{Cs}}}{\epsilon_{abs,\ch{Cs}}\delta t}=\frac{\#_{\ch{Cs}}}{\epsilon_{ratio}\epsilon_{abs, RAD.INTR.}\delta t}
+\end {equation}
+
+ \begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Attivita}
+\caption{Activity}
+\label{acti}
+\end{figure}
+
+\textbf{Expected activity}: Knowing the initial activity of \ch{^{137}Cs} of approximately 41.3 kBq with a half-life of 30.08 years (as reported in the appendix \ref{parameter}) the expected activity is estimated using the radioactive decay formula
+ 
+\begin{equation}
+A_{\ch{Cs}}=A_{0}e^{-\lambda t}=A_{0}e^{-\frac{ln(2)}{\tau_{1/2}}\delta t} = 29.23\pm0.1 kBq
+\end {equation}
+
+we can therefore assume that the data provided for geometric efficiency $\epsilon_{ratio}$ are not complete.
+ 
+\chapter{Search for unknown source}
+During this last part we focused on the research of spectrum analysis for various sources including:
+\begin{itemize}
+\item \ch{^{137}Cs}
+\item \ch{^{22}Na}
+\item unknown source
+\end{itemize}
+The purpose of this section is to compare the data obtained for the known sources and compare them with those tabulated on the site \url{https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html} (radionuclide table), then once the known radionuclides have been confirmed, the unknown source is searched for starting from the energy spectrum that is measured.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{cesio1_1000V}
+\caption{\ch{^{137}Cs}}
+\label{cesio}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cccc}\hline
+\textbf{Real peak [keV]}&\textbf{Peak [keV]}&\textbf{$\sigma$ [keV]}&\textbf{Decay Radiation}\\\hline
+661.657&662.74&8.80&$\gamma$-ray \ch{^{137}Cs}\\\hline
+\end{tabular}
+\caption{Energy peak}
+\label{Cs_peak}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{sodio22_1000V}
+\caption{\ch{^{22}Na}}
+\label{sodio}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cccc}\hline
+\textbf{Real peak [keV]}&\textbf{Peak [keV]}&\textbf{$\sigma$ [keV]}&\textbf{Decay Radiation}\\\hline
+511&512.29&8.08&$e^{+}e^{-}$\\
+1274.537&1263.5&12.12&$\gamma$-ray \ch{^{22}Na}\\\hline
+\end{tabular}
+\caption{Energy peak}
+\label{Na_peak}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{ignota_1000V}
+\caption{Unknown source}
+\label{cobalto}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cccc}\hline
+\textbf{Real peak [keV]}&\textbf{Peak [keV]}&\textbf{$\sigma$ [keV]}&\textbf{Decay Radiation}\\\hline
+1173.228&1160.85&12.09&$\gamma$-ray \ch{^{60}Co}\\
+1332.492&1317.2&12.6&$\gamma$-ray \ch{^{60}Co}\\\hline
+\end{tabular}
+\caption{Energy peak}
+\label{Co_peak}
+\end{table}
+
+From the analysis we can conclude that the unknown source is  \ch{^{60}Co}, which as also indicated in the table \ref{Co_peak}. The results obtained are in agreement with what is tabulated.
 
 \appendix
 \chapter{137 Cesio}
@@ -253,6 +390,7 @@ A_{\ch{Cs}}=A_{0}e^{-\lambda t}=A_{0}e^{-\frac{ln(2)}{\tau_{1/2}} t}
 \end{figure}
 
 \chapter{Parameter}
+\label{parameter}
 $^{138}\ch{La}$ half-life: $\tau_{1/2}=1.02\cdot10^{11}$ years\\
 $^{137}\ch{Cs}$ half-life: $\tau_{1/2}=30.08$ years\\
 Relative efficiency: $\epsilon=19\%$\\
@@ -263,7 +401,7 @@ $\ch{LaBr3}$ molar mass: $mm_{\ch{LaBr3}}=378.61$\\
 $\ch{CeBr3}$ molar mass: $mm_{\ch{CeBr3}}=379.82$\\
 $\ch{LaBr3}$ density: $\rho_{\ch{LaBr3}}=5.06 g/cm^{3}$\\
 $\ch{CeBr3}$ density: $\rho_{\ch{CeBr3}}=5.1 g/cm^{3}$\\
-Time: $t=1200 s$\\
+Time: $\delta t=1200 s$\\
 $^{137}\ch{Cs}$ activity in 2015: $A_{0}=41.3 kBq$\\
 
 \chapter{Error propagation}
